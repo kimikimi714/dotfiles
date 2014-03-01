@@ -6,8 +6,12 @@ alias GR="cd ${DOCUMENTS_DIR}/git_repo"
 alias ls='ls -G'
 
 # chrubyの設定
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+# source /usr/local/opt/chruby/share/chruby/chruby.sh
+# source /usr/local/opt/chruby/share/chruby/auto.sh
+
+# rbenvの設定
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # gitコマンドラインの見せ方設定
 source ${DOCUMENTS_DIR}/git_repo/config/git-prompt.sh
