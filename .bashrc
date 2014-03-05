@@ -5,10 +5,6 @@ alias GR="cd ${DOCUMENTS_DIR}/git_repo"
 # 実行時オプションとかショートカットaliasの設定
 alias ls='ls -G'
 
-# chrubyの設定
-# source /usr/local/opt/chruby/share/chruby/chruby.sh
-# source /usr/local/opt/chruby/share/chruby/auto.sh
-
 # rbenvの設定
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -23,5 +19,5 @@ source ${DOCUMENTS_DIR}/git_repo/config/git-completion.bash
 GIT_PS1_SHOWDIRTYSTATE=true
 export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
 
-# alias
-alias ls='ls -G'
+# homebrewでインストールしたものが/usr/binより先に読み込まれるようにするための設定
+export PATH="/usr/local/bin:$PATH"
