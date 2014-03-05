@@ -1,0 +1,22 @@
+tap homebrew/dupes || true
+tap josegonzalez/homebrew-php || true
+update || true
+upgrade || true
+
+install rbenv || true
+install ruby-build || true
+install --HEAD phpenv || true
+install --HEAD php-build || true
+install autoconf || true
+install pkg-config || true
+install openssl || true
+install fontforge || true
+install fontconfig || true
+install freetype || true
+install jpeg || true
+install libtiff || true
+install gettext || true
+install libpng || true
+install yasm || true
+
+cleanup
