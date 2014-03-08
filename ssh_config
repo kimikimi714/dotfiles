@@ -1,0 +1,6 @@
+Host github.com
+    IdentityFile ~/.ssh/id_rsa
+Host sakura
+    HostName something.com
+    Port XXXXX
+    IdentityFile ~/.ssh/id_rsa
