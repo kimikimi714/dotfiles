@@ -18,5 +18,6 @@ install libtiff || true
 install gettext || true
 install libpng || true
 install yasm || true
+install tmux || true
 
 cleanup
