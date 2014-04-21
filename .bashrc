@@ -1,6 +1,7 @@
 # 特定ディレクトリへのalias
 alias GC="cd ${DOCUMENTS_DIR}/git_clone"
 alias GR="cd ${DOCUMENTS_DIR}/git_repo"
+alias V="cd ${DOCUMENTS_DIR}/vagrant"
 
 # 実行時オプションとかショートカットaliasの設定
 alias ls='ls -G'
@@ -15,8 +16,8 @@ export PATH="$HOME/.phpenv/bin:$PATH"
 eval "$(phpenv init -)"
 
 # gitコマンドラインの見せ方設定
-source ${DOCUMENTS_DIR}/git_repo/config/git-prompt.sh
-source ${DOCUMENTS_DIR}/git_repo/config/git-completion.bash
+source ${DOCUMENTS_DIR}/git_repo/config/git-completion/git-prompt.sh
+source ${DOCUMENTS_DIR}/git_repo/config/git-completion/git-completion.bash
 GIT_PS1_SHOWDIRTYSTATE=true
 export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
 
