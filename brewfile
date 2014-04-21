@@ -1,4 +1,5 @@
 tap homebrew/dupes || true
+tap homebrew/binary || true
 tap josegonzalez/homebrew-php || true
 update || true
 upgrade || true
@@ -19,5 +20,6 @@ install gettext || true
 install libpng || true
 install yasm || true
 install tmux || true
+install packer || true
 
 cleanup
