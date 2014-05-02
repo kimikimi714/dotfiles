@@ -2,3 +2,4 @@
 { "keys": ["alt+m"], "command": "markdown_preview", "args": {"target": "browser", "parser":"markdown"} },
 { "keys": ["ctrl+shift+t"], "command": "delete_trailing_spaces" }
 ]
+

@@ -1,0 +1,10 @@
+*~
+.DS_Store
+.buildpath
+.project
+.settings
+.idea
+.classpath
+.svn
+*.sw[po]
+

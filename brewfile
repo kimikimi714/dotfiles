@@ -1,6 +1,6 @@
 tap homebrew/dupes || true
 tap homebrew/binary || true
-tap josegonzalez/homebrew-php || true
+tap homebrew/homebrew-php || true
 update || true
 upgrade || true
 
@@ -23,3 +23,4 @@ install tmux || true
 install packer || true
 
 cleanup
+
