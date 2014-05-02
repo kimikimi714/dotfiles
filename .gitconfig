@@ -3,9 +3,17 @@
   email = kimikimi714@gmail.com
 [core]
   editor = vim
-  excludesfile = /Users/kimikimi714/Dropbox/gitignoreGlobal
+  excludesfile = /Users/kimie_furuya/Documents/git_repo/config/gitignoreGlobal
 [color]
   ui = true
 [alias]
   co = checkout
+  st = status -sb # シンプルなstatus
   lg = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+  pr = pull --rebase --prune # pull するときにmergeコミットを作らない
+  fo = fetch origin
+  ro = rebase origin # branchでfoしてroすればmasterにrebaseできる
+  rc = rebase --continue
+  wd = diff --word-diff # 単語単位のdiff
+  gp = grep -n # grepに行番号をつける
+  d  = diff --ignore-space-change
