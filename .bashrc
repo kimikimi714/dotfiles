@@ -11,10 +11,6 @@ alias pass='mono ~/Downloads/KeePass-2.26/KeePass.exe'
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-# phpenvの設定
-export PATH="$HOME/.phpenv/bin:$PATH"
-eval "$(phpenv init -)"
-
 # gitコマンドラインの見せ方設定
 source ${DOCUMENTS_DIR}/git_repo/config/git-completion/git-prompt.sh
 source ${DOCUMENTS_DIR}/git_repo/config/git-completion/git-completion.bash
