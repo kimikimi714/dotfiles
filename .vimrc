@@ -8,7 +8,7 @@ colorscheme molokai
 set background=dark
 
 " 画面表示の設定
-syntax on           " シンタックスハイライト　オン
+syntax on           " シンタックスハイライト オン
 colorscheme molokai
 set background=dark
 set number            " 行番号を表示する
@@ -73,7 +73,7 @@ set clipboard=unnamed,unnamedplus
 
 " コマンドラインモードでTABキーによるファイル名補完を有効にする
 set wildmenu wildmode=list:longest,full
-" コマンドラインの履歴を10000件保存する
+" コマンドラインの履歴を100件保存する
 set history=100
 
 " 2014-03-01

@@ -6,8 +6,6 @@ upgrade || true
 
 install rbenv || true
 install ruby-build || true
-install --HEAD phpenv || true
-install --HEAD php-build || true
 install autoconf || true
 install pkg-config || true
 install openssl || true

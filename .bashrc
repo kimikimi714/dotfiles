@@ -5,7 +5,7 @@ alias V="cd ${DOCUMENTS_DIR}/vagrant"
 
 # 実行時オプションとかショートカットaliasの設定
 alias ls='ls -G'
-alias pass='mono ~/Downloads/KeePass-2.25/KeePass.exe'
+alias pass='mono ~/Downloads/KeePass-2.26/KeePass.exe'
 
 # rbenvの設定
 export PATH="$HOME/.rbenv/bin:$PATH"
