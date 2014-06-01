@@ -12,8 +12,8 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # gitコマンドラインの見せ方設定
-source ${DOCUMENTS_DIR}/git_repo/config/git-completion/git-prompt.sh
-source ${DOCUMENTS_DIR}/git_repo/config/git-completion/git-completion.bash
+source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
 GIT_PS1_SHOWDIRTYSTATE=true
 export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
 
