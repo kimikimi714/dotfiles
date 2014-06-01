@@ -22,6 +22,7 @@ install packer || true
 install node || true
 install git || true
 install zsh || true
+install tree || true
 
 cleanup
 
