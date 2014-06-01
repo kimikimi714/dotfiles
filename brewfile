@@ -19,6 +19,7 @@ install libpng || true
 install yasm || true
 install tmux || true
 install packer || true
+install node || true
 
 cleanup
 
