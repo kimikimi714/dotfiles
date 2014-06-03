@@ -97,6 +97,10 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " You can specify revision/branch/tag.
 "NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tyru/caw.vim'
+" コメントアウトのトグル(2014-06-01)
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
 
 " Required:
 filetype plugin indent on

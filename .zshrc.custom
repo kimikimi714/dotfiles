@@ -1,0 +1,243 @@
+# 特定ディレクトリへのalias
+alias GC="cd ${DOCUMENTS_DIR}/git_clone"
+alias GR="cd ${DOCUMENTS_DIR}/git_repo"
+alias V="cd ${DOCUMENTS_DIR}/vagrant"
+
+# 実行時オプションとかショートカットaliasの設定
+alias ls='ls -G'
+alias pass='mono ~/Downloads/KeePass-2.26/KeePass.exe'
+
+# rbenvの設定
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh)"
+
+# 言語設定
+export LANG=ja_JP.UTF-8
+export LESSCHARSET=utf-8
+
+# Terminal Colorの設定
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+# oh-my-zsh export LESS=R
+unset LESS
+
+# プロンプトが表示されるたびにプロンプト文字列を評価、置換する
+setopt prompt_subst
+setopt transient_rprompt
+
+## Default shell configuration
+# colors enables us to idenfity color by $fg[red].
+autoload colors
+colors
+case ${UID} in
+  0)
+    PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b "
+    PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
+    SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+      PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
+    ;;
+  *)
+    #
+    # Color
+    #
+    RESET="%{${reset_color}%}"
+    GREEN="%{${fg[green]}%}"
+    BLUE="%{${fg[blue]}%}"
+    RED="%{${fg[red]}%}"
+    CYAN="%{${fg[cyan]}%}"
+    WHITE="%{${fg[white]}%}"
+    YELLOW=$'%{\e[32m%}'
+    POH=" $"
+
+    #
+    # Prompt
+    #
+    PROMPT='${YELLOW}%n@%m${RESET}:${BLUE}%(5~,%-2~/.../%2~,%~)% ${RESET} $ '
+
+    # gitやsvnなどのブランチ表示設定
+    # see: http://qiita.com/mollifier/items/8d5a627d773758dd8078
+    autoload -Uz add-zsh-hook
+    autoload -Uz vcs_info
+
+    zstyle ':vcs_info:*' enable git svn
+    zstyle ':vcs_info:*' formats '(%s)-[%b]'
+    zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+    zstyle ':vcs_info:svn:*' branchformat '%b:r%r'
+
+    autoload -Uz is-at-least
+    if is-at-least 4.3.10; then
+      # git のときはステージしているかどうかを表示
+      zstyle ':vcs_info:git:*' formats '(%s)-[%b]' '%c%u %m'
+      zstyle ':vcs_info:git:*' actionformats '(%s)-[%b]' '%c%u %m' '<!%a>'
+      zstyle ':vcs_info:git:*' check-for-changes true
+      zstyle ':vcs_info:git:*' stagedstr "+"    # %c で表示する文字列
+      zstyle ':vcs_info:git:*' unstagedstr "*"  # %u で表示する文字列
+    fi
+
+    # hooks 設定
+    if is-at-least 4.3.11; then
+      # git のときはフック関数を設定する
+      # formats '(%s)-[%b]' '%c%u %m' , actionformats '(%s)-[%b]' '%c%u %m' '<!%a>'
+      # のメッセージを設定する直前のフック関数
+      # 今回の設定の場合はformat の時は2つ, actionformats の時は3つメッセージがあるので
+      # 各関数が最大3回呼び出される。
+      zstyle ':vcs_info:git+set-message:*' hooks \
+        git-hook-begin \
+        git-untracked \
+        git-push-status \
+        git-nomerge-branch \
+        git-stash-count
+
+      # フックの最初の関数
+      # git の作業コピーのあるディレクトリのみフック関数を呼び出すようにする
+      # (.git ディレクトリ内にいるときは呼び出さない)
+      # .git ディレクトリ内では git status --porcelain などがエラーになるため
+      function +vi-git-hook-begin() {
+      if [[ $(command git rev-parse --is-inside-work-tree 2> /dev/null) != 'true' ]]; then
+        # 0以外を返すとそれ以降のフック関数は呼び出されない
+        return 1
+      fi
+
+      return 0
+      }
+
+      # untracked フィアル表示
+      #
+      # untracked ファイル(バージョン管理されていないファイル)がある場合は
+      # unstaged (%u) に ? を表示
+      function +vi-git-untracked() {
+        # zstyle formats, actionformats の2番目のメッセージのみ対象にする
+        if [[ "$1" != "1" ]]; then
+          return 0
+        fi
+
+        if command git status --porcelain 2> /dev/null \
+          | awk '{print $1}' \
+          | command grep -F '??' > /dev/null 2>&1 ; then
+
+        # unstaged (%u) に追加
+        hook_com[unstaged]+='?'
+        fi
+      }
+
+      # push していないコミットの件数表示
+      #
+      # リモートリポジトリに push していないコミットの件数を
+      # pN という形式で misc (%m) に表示する
+      function +vi-git-push-status() {
+        # zstyle formats, actionformats の2番目のメッセージのみ対象にする
+        if [[ "$1" != "1" ]]; then
+          return 0
+        fi
+
+        if [[ "${hook_com[branch]}" != "master" ]]; then
+          # master ブランチでない場合は何もしない
+          return 0
+        fi
+
+        # push していないコミット数を取得する
+        local ahead
+        ahead=$(command git rev-list origin/master..master 2>/dev/null \
+          | wc -l \
+          | tr -d ' ')
+
+        if [[ "$ahead" -gt 0 ]]; then
+          # misc (%m) に追加
+          hook_com[misc]+="(p${ahead})"
+        fi
+      }
+
+      # マージしていない件数表示
+      #
+      # master 以外のブランチにいる場合に、
+      # 現在のブランチ上でまだ master にマージしていないコミットの件数を
+      # (mN) という形式で misc (%m) に表示
+      function +vi-git-nomerge-branch() {
+        # zstyle formats, actionformats の2番目のメッセージのみ対象にする
+        if [[ "$1" != "1" ]]; then
+          return 0
+        fi
+
+        if [[ "${hook_com[branch]}" == "master" ]]; then
+          # master ブランチの場合は何もしない
+          return 0
+        fi
+
+        local nomerged
+        nomerged=$(command git rev-list master..${hook_com[branch]} 2>/dev/null | wc -l | tr -d ' ')
+
+        if [[ "$nomerged" -gt 0 ]] ; then
+          # misc (%m) に追加
+          hook_com[misc]+="(m${nomerged})"
+        fi
+      }
+
+      # stash 件数表示
+      #
+      # stash している場合は :SN という形式で misc (%m) に表示
+      function +vi-git-stash-count() {
+        # zstyle formats, actionformats の2番目のメッセージのみ対象にする
+        if [[ "$1" != "1" ]]; then
+          return 0
+        fi
+
+        local stash
+        stash=$(command git stash list 2>/dev/null | wc -l | tr -d ' ')
+        if [[ "${stash}" -gt 0 ]]; then
+          # misc (%m) に追加
+          hook_com[misc]+=":S${stash}"
+        fi
+      }
+    fi
+
+    function _update_vcs_info_msg() {
+      local -a messages
+      local prompt
+
+      LANG=en_US.UTF-8 vcs_info
+
+      if [[ -z ${vcs_info_msg_0_} ]]; then
+        vcs_info で何も取得していない場合はプロンプトを表示しない
+        prompt=""
+      else
+        # vcs_info で情報を取得した場合
+        # $vcs_info_msg_0_ , $vcs_info_msg_1_ , $vcs_info_msg_2_ を
+        # それぞれ緑、黄色、赤で表示する
+        [[ -n "$vcs_info_msg_0_" ]] && messages+=( '${CYAN}${vcs_info_msg_0_}' )
+        [[ -n "$vcs_info_msg_1_" ]] && messages+=( '${YELLOW}${vcs_info_msg_1_}' )
+        [[ -n "$vcs_info_msg_2_" ]] && messages+=( '${RED}${vcs_info_msg_2_}' )
+
+        # 間にスペースを入れて連結する
+        prompt="${(j: :)messages}"
+      fi
+
+      RPROMPT="${prompt}"
+    }
+    add-zsh-hook precmd _update_vcs_info_msg
+
+  ;;
+esac
+
+# zshの補完機能
+autoload -U compinit
+compinit
+
+# Viライクな操作を有効
+bindkey -v
+
+# 入力したコマンドが存在せず、かつディレクトリ名と一致するなら、そのディレクトリに移動
+setopt auto_cd
+
+# cdした先のディレクトリをディレクトリスタックに追加する
+setopt auto_pushd
+
+# pushdしたときに、ディレクトリが既にスタックに含まれていればスタックに追加しない
+setopt pushd_ignore_dups
+
+# 入力したコマンドが既にコマンド履歴に含まれる場合、履歴が古い方のコマンドを削除する
+setopt hist_ignore_all_dups
+
+# <Tab>でパス名の補完候補の選択をできるようにする
+zstyle ':completion:*:default' menu select=1
