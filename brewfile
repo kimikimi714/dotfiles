@@ -23,6 +23,7 @@ install node || true
 install git || true
 install zsh || true
 install tree || true
+install coreutils || true
 
 cleanup
 
