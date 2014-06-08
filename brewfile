@@ -1,14 +1,17 @@
+# tap
 tap homebrew/dupes || true
 tap homebrew/binary || true
-tap homebrew/homebrew-php || true
+tap caskroom/cask || true
 update || true
 upgrade || true
 
+# ruby
 install rbenv || true
 install ruby-build || true
+
+# font
 install autoconf || true
 install pkg-config || true
-install openssl || true
 install fontforge || true
 install fontconfig || true
 install freetype || true
@@ -17,13 +20,38 @@ install libtiff || true
 install gettext || true
 install libpng || true
 install yasm || true
-install tmux || true
+
+# packer
 install packer || true
+
+# node
 install node || true
-install git || true
+
+# terminal
+install tmux || true
 install zsh || true
-install tree || true
 install coreutils || true
+
+# utilities
+install git || true
+install tree || true
+install ack || true
+install openssl || true
 
 cleanup
 
+# casks
+install brew-cask
+cask install google-chrome || true
+cask install dropbox || true
+cask install evernote || true
+cask install skitch || true
+cask install vagrant
+cask install virtualbox || true
+cask install iterm2 || true
+cask install xquartz || true
+cask install sublime-text || true
+cask install unity-web-player || true
+cask install alfred || true
+
+cask cleanup --outdated
