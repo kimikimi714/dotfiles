@@ -3,9 +3,6 @@ if has('vim_starting')
   " Required:
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-syntax on
-colorscheme molokai
-set background=dark
 
 " 画面表示の設定
 syntax on           " シンタックスハイライト オン
@@ -83,20 +80,8 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 " Let NeoBundle manage NeoBundle
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
-
-"NeoBundle 'Shougo/vimproc', {
-"      \ 'build' : {
-"      \     'windows' : 'make -f make_mingw32.mak',
-"      \     'cygwin' : 'make -f make_cygwin.mak',
-"      \     'mac' : 'make -f make_mac.mak',
-"      \     'unix' : 'make -f make_unix.mak',
-"      \    },
-"      \ }
-
-" My Bundles here:
-" You can specify revision/branch/tag.
-"NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-NeoBundle 'tpope/vim-fugitive'
+"NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tomasr/molokai'
 NeoBundle 'tyru/caw.vim'
 " コメントアウトのトグル(2014-06-01)
 nmap <Leader>c <Plug>(caw:i:toggle)

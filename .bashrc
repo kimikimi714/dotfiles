@@ -5,6 +5,7 @@ alias V="cd ${DOCUMENTS_DIR}/vagrant"
 
 # 実行時オプションとかショートカットaliasの設定
 alias ls='ls -G'
+alias grep='grep --color'
 alias pass='mono ~/Downloads/KeePass-2.26/KeePass.exe'
 
 # rbenvの設定
