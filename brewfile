@@ -11,7 +11,6 @@ install ruby-build || true
 
 # font
 install autoconf || true
-install pkg-config || true
 install fontforge || true
 install fontconfig || true
 install freetype || true
@@ -34,6 +33,7 @@ install coreutils || true
 
 # utilities
 install git || true
+install tig || true
 install tree || true
 install ack || true
 install openssl || true
