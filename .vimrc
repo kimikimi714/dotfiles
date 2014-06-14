@@ -4,7 +4,30 @@ if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
+" Required:
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'tyru/caw.vim'
+NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+" コメントアウトのトグル(2014-06-01)
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleChec
+
 " 画面表示の設定
+let g:Powerline_symbols = 'fancy'
+set t_Co=256
+let g:Powerline_symbols = 'compatible'
 syntax on           " シンタックスハイライト オン
 colorscheme molokai
 set background=dark
@@ -21,7 +44,7 @@ set list              " 不可視文字を表示
 set formatoptions+=mM " テキスト挿入中の自動折り返しを日本語に対応させる
 set linebreak         " 単語途中で折り返しせず、ホワイトスペースで折り返す
 " 不可視文字の表示記号指定
-set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮
+set listchars=tab:▸=,trail:-,eol:↲,extends:❯,precedes:❮
 " 全角スペース表示
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
@@ -72,24 +95,3 @@ set clipboard=unnamed,unnamedplus
 set wildmenu wildmode=list:longest,full
 " コマンドラインの履歴を100件保存する
 set history=100
-
-" 2014-03-01
-" Required:
-call neobundle#rc(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-"NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'tyru/caw.vim'
-" コメントアウトのトグル(2014-06-01)
-nmap <Leader>c <Plug>(caw:i:toggle)
-vmap <Leader>c <Plug>(caw:i:toggle)
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-  " this will conveniently prompt you to install them.
-  NeoBundleChec
