@@ -13,6 +13,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+NeoBundle 'mattn/emmet-vim'
 " コメントアウトのトグル(2014-06-01)
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
@@ -22,7 +23,7 @@ filetype plugin indent on
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
-NeoBundleChec
+NeoBundleCheck
 
 " 画面表示の設定
 let g:Powerline_symbols = 'fancy'
