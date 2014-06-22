@@ -1,7 +1,7 @@
 if has('vim_starting')
   set nocompatible               " Be iMproved
   " Required:
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
@@ -10,26 +10,14 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 " Let NeoBundle manage NeoBundle
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'tyru/caw.vim'
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
-NeoBundle 'mattn/emmet-vim'
-" コメントアウトのトグル(2014-06-01)
-nmap <Leader>c <Plug>(caw:i:toggle)
-vmap <Leader>c <Plug>(caw:i:toggle)
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
 
 " 画面表示の設定
+NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
 let g:Powerline_symbols = 'fancy'
 set t_Co=256
 let g:Powerline_symbols = 'compatible'
-syntax on           " シンタックスハイライト オン
+syntax on             " シンタックスハイライト オン
+NeoBundle 'tomasr/molokai'
 colorscheme molokai
 set background=dark
 set number            " 行番号を表示する
@@ -49,7 +37,10 @@ set listchars=tab:▸=,trail:-,eol:↲,extends:❯,precedes:❮
 " 全角スペース表示
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
-
+" インデントに色を付けて見やすくする
+NeoBundle 'nathanaelkane/vim-indent-guides'
+" vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
+let g:indent_guides_enable_on_vim_startup = 1
 
 " カーソル移動関連の設定
 
@@ -75,6 +66,12 @@ set ignorecase " 大文字と小文字を区別しない
 set smartcase  " 大文字と小文字が混在した言葉で検索を行った場合に限り、大文字と小文字を区別する
 set wrapscan   " 最後尾まで検索を終えたら次の検索で先頭に移る
 set gdefault   " 置換の時 g オプションをデフォルトで有効にする
+" コメントアウトのトグル(2014-06-01)
+NeoBundle 'tyru/caw.vim'
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
+" Required:
+filetype plugin indent on
 
 " タブ/インデントの設定
 
@@ -96,3 +93,10 @@ set clipboard=unnamed,unnamedplus
 set wildmenu wildmode=list:longest,full
 " コマンドラインの履歴を100件保存する
 set history=100
+
+" HTMLタグの補完強化
+NeoBundle 'mattn/emmet-vim'
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
