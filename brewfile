@@ -2,6 +2,7 @@
 tap homebrew/dupes || true
 tap homebrew/binary || true
 tap caskroom/cask || true
+tap caskroom/versions || true
 update || true
 upgrade || true
 
@@ -47,7 +48,7 @@ cask install dropbox || true
 cask install evernote || true
 cask install skitch || true
 cask install vagrant
-cask install virtualbox || true
+cask install virtualbox43691406 || true
 cask install iterm2 || true
 cask install xquartz || true
 cask install sublime-text || true
