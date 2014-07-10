@@ -3,8 +3,11 @@ dotfiles
 
 主にmacのセッティング用
 
-## changes
+## CHANGELOG
 
+- 2014-07-10
+  - sqliteをbrewから入れられるようにした
+    - [sqliteのインストールをbrewfileで書くには](http://kimikimi714.hatenablog.com/entry/2014/07/10/235548)
 - 2014-06-08
   - zsh導入
   - NeoBudleで`\c`で[コメントアウトのトグル切り替えができる拡張](https://github.com/tyru/caw.vim)を入れた
