@@ -38,6 +38,8 @@ install tig || true
 install tree || true
 install ack || true
 install openssl || true
+install sqlite || true
+link sqlite --force
 
 cleanup
 
