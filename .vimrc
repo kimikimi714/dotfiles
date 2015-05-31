@@ -16,6 +16,8 @@ NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
 let g:Powerline_symbols = 'fancy'
 set t_Co=256
 let g:Powerline_symbols = 'compatible'
+" scala用syntax highlight
+NeoBundle 'derekwyatt/vim-scala'
 syntax on             " シンタックスハイライト オン
 NeoBundle 'tomasr/molokai'
 colorscheme molokai
