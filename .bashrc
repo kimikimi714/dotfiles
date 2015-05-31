@@ -20,3 +20,6 @@ export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)
 
 # homebrewでインストールしたものが/usr/binより先に読み込まれるようにするための設定
 export PATH="/usr/local/bin:$PATH"
+
+# playのPATH追加(2015-05-31)
+export PATH="$HOME/Downloads/activator-1.3.2-minimal:$PATH"
