@@ -11,3 +11,5 @@ eval "$(rbenv init - zsh)"
 # scala path
 export PATH="$HOME/Downloads/scala-2.11.6/bin:$PATH"
 
+# playのPATH追加(2015-05-31)
+export PATH="$HOME/Downloads/activator-1.3.2-minimal:$PATH"
