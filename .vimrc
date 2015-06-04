@@ -99,6 +99,9 @@ set history=100
 " HTMLタグの補完強化
 NeoBundle 'mattn/emmet-vim'
 
+" https://github.com/Shougo/unite.vim
+NeoBundle 'Shougo/unite.vim'
+
 " https://github.com/Shougo/neocomplete.vim
 let g:neocomplete#enable_at_startup = 1
 
