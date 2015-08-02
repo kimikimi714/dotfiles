@@ -1,16 +1,7 @@
-# 特定ディレクトリへのalias
-alias GC="cd ${DOCUMENTS_DIR}/git_clone"
-alias GR="cd ${DOCUMENTS_DIR}/git_repo"
-alias V="cd ${DOCUMENTS_DIR}/vagrant"
-
 # 実行時オプションとかショートカットaliasの設定
 alias ls='ls -G'
 alias grep='grep --color'
 alias pass='mono ~/Downloads/KeePass-2.26/KeePass.exe'
-
-# rbenvの設定
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 
 # gitコマンドラインの見せ方設定
 source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh

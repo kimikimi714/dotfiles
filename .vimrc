@@ -16,6 +16,8 @@ NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
 let g:Powerline_symbols = 'fancy'
 set t_Co=256
 let g:Powerline_symbols = 'compatible'
+" scala用syntax highlight
+NeoBundle 'derekwyatt/vim-scala'
 syntax on             " シンタックスハイライト オン
 NeoBundle 'tomasr/molokai'
 colorscheme molokai
@@ -37,6 +39,8 @@ set listchars=tab:▸=,trail:-,eol:↲,extends:❯,precedes:❮
 " 全角スペース表示
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
+" 行末の半角スペースを可視化
+NeoBundle 'bronson/vim-trailing-whitespace'
 " インデントに色を付けて見やすくする
 NeoBundle 'nathanaelkane/vim-indent-guides'
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
@@ -67,6 +71,7 @@ set smartcase  " 大文字と小文字が混在した言葉で検索を行った
 set wrapscan   " 最後尾まで検索を終えたら次の検索で先頭に移る
 set gdefault   " 置換の時 g オプションをデフォルトで有効にする
 " コメントアウトのトグル(2014-06-01)
+" \cでコメントアウトの切り替え
 NeoBundle 'tyru/caw.vim'
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
@@ -96,6 +101,43 @@ set history=100
 
 " HTMLタグの補完強化
 NeoBundle 'mattn/emmet-vim'
+
+" https://github.com/Shougo/unite.vim
+NeoBundle 'Shougo/unite.vim'
+
+" ファイルをtree表示してくれる
+NeoBundle 'scrooloose/nerdtree'
+
+" https://github.com/Shougo/neocomplete.vim
+NeoBundle 'Shougo/neocomplete.vim'
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+ " Use underbar completion.
+let g:neocomplete#enable_underbar_completion = 1
+" ユーザ定義の辞書を指定
+let g:neocomplete#sources#dictionary#dictionaries = {
+  \ 'default' : '',
+  \ 'scala' : $HOME . '/.vim/dict/scala.dict',
+  \ }
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " Required:
 call neobundle#end()
