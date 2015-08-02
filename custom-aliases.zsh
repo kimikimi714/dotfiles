@@ -1,7 +1,7 @@
 # 特定ディレクトリへのalias
-alias GC="cd ${DOCUMENTS_DIR}/git_clone"
-alias GR="cd ${DOCUMENTS_DIR}/git_repo"
-alias V="cd ${DOCUMENTS_DIR}/vagrant"
+alias GC="cd ${DOCUMENTS}/git_clone"
+alias GR="cd ${DOCUMENTS}/git_repo"
+alias V="cd ${DOCUMENTS}/vagrant"
 
 # 実行時オプションとかショートカットaliasの設定
 alias ls='gls --color -F'
