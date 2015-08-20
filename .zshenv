@@ -14,3 +14,5 @@ export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 
 # pythonのパス設定
 export PYTHONENV="$(brew --prefix)/lib/python2.7/site-packages"
+
+export VAULT_ADDR='http://127.0.0.1:8200'
