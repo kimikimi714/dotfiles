@@ -12,12 +12,14 @@ call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " 画面表示の設定
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+set guifont=Ricty\ for\ Powerline:h15
 let g:Powerline_symbols = 'fancy'
+set encoding=utf-8
 set t_Co=256
-let g:Powerline_symbols = 'compatible'
-" scala用syntax highlight
-NeoBundle 'derekwyatt/vim-scala'
+set fillchars+=stl:\ ,stlnc:\
+set term=xterm-256color
+set termencoding=utf-8
 syntax on             " シンタックスハイライト オン
 NeoBundle 'tomasr/molokai'
 colorscheme molokai
@@ -47,7 +49,6 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 
 " カーソル移動関連の設定
-
 set backspace=indent,eol,start " Backspaceキーでインデントや改行を削除できるようにする
 set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
 set scrolloff=8                " 上下8行の視界を確保
@@ -55,7 +56,6 @@ set sidescrolloff=16           " 左右スクロール時の視界を確保
 set sidescroll=1               " 左右スクロールは一文字づつ行う
 
 " ファイル処理関連の設定
-
 set confirm    " 保存されていないファイルがあるときは終了前に保存確認
 set hidden     " 保存されていないファイルがあるときでも別のファイルを開くことが出来る
 set autoread   " 外部でファイルに変更がされた場合は読みなおす
@@ -63,7 +63,6 @@ set nobackup   " ファイル保存時にバックアップファイルを作ら
 set noswapfile " ファイル編集中にスワップファイルを作らない
 
 " 検索/置換の設定
-
 set hlsearch   " 検索文字列をハイライトする
 set incsearch  " インクリメンタルサーチを行う
 set ignorecase " 大文字と小文字を区別しない
@@ -77,9 +76,10 @@ nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
 " Required:
 filetype plugin indent on
+" 複数文字を一気に選択
+NeoBundle 'terryma/vim-multiple-cursors'
 
 " タブ/インデントの設定
-
 set expandtab     " タブ入力を複数の空白入力に置き換える
 set tabstop=2     " 画面上でタブ文字が占める幅
 set shiftwidth=2  " 自動インデントでずれる幅
@@ -88,12 +88,10 @@ set autoindent    " 改行時に前の行のインデントを継続する
 set smartindent   " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 
 " 動作環境との統合関連の設定
-
 " OSのクリップボードをレジスタ指定無しで Yank, Put 出来るようにする
 set clipboard=unnamed,unnamedplus
 
 " コマンドラインの設定
-
 " コマンドラインモードでTABキーによるファイル名補完を有効にする
 set wildmenu wildmode=list:longest,full
 " コマンドラインの履歴を100件保存する
@@ -107,9 +105,14 @@ NeoBundle 'Shougo/unite.vim'
 
 " ファイルをtree表示してくれる
 NeoBundle 'scrooloose/nerdtree'
+" 隠しファイルをデフォルトで表示させる
+let NERDTreeShowHidden = 1
+" デフォルトでツリーを表示させる
+autocmd VimEnter * execute 'NERDTree'
 
 " https://github.com/Shougo/neocomplete.vim
 NeoBundle 'Shougo/neocomplete.vim'
+
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
@@ -138,6 +141,15 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+" scala用syntax highlight
+NeoBundle 'derekwyatt/vim-scala'
+" html5シンタックス
+NeoBundle 'taichouchou2/html5.vim'
+" CSSシンタックス
+NeoBundle 'hail2u/vim-css3-syntax'
+" javascriptシンタックス
+NeoBundle 'pangloss/vim-javascript'
 
 " Required:
 call neobundle#end()
