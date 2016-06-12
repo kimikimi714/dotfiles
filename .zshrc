@@ -18,3 +18,8 @@ setopt hist_ignore_all_dups
 # 例： <Space>echo hello と入力
 setopt hist_ignore_space
 
+# 特定ディレクトリへのalias
+alias V="cd ${DOCUMENTS}/vagrant"
+
+# 実行時オプションとかショートカットaliasの設定
+alias ls='gls --color -F'
