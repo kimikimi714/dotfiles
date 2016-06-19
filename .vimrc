@@ -1,18 +1,19 @@
-set nocompatible " Be iMproved
-if has('vim_starting')
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+if &compatible
+  set nocompatible               " Be iMproved
 endif
 
 " Required:
-call neobundle#begin(expand('~/.vim/bundle'))
+set runtimepath^=~/.dein/repos/github.com/Shougo/dein.vim
 
-" Let NeoBundle manage NeoBundle
 " Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+call dein#begin(expand('~/.dein'))
+
+" Let dein manage dein
+" Required:
+call dein#add('Shougo/dein.vim')
 
 " 画面表示の設定
-NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+call dein#add('powerline/powerline', {'rtp': 'powerline/bindings/vim/'})
 set guifont=Ricty\ for\ Powerline:h15
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
@@ -21,7 +22,7 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 syntax on             " シンタックスハイライト オン
-NeoBundle 'tomasr/molokai'
+call dein#add('tomasr/molokai')
 colorscheme molokai
 set background=dark
 set number            " 行番号を表示する
@@ -42,9 +43,9 @@ set listchars=tab:▸=,trail:-,eol:↲,extends:❯,precedes:❮
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
 " 行末の半角スペースを可視化
-NeoBundle 'bronson/vim-trailing-whitespace'
+call dein#add('bronson/vim-trailing-whitespace')
 " インデントに色を付けて見やすくする
-NeoBundle 'nathanaelkane/vim-indent-guides'
+call dein#add('nathanaelkane/vim-indent-guides')
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
 let g:indent_guides_enable_on_vim_startup = 1
 
@@ -71,13 +72,13 @@ set wrapscan   " 最後尾まで検索を終えたら次の検索で先頭に移
 set gdefault   " 置換の時 g オプションをデフォルトで有効にする
 " コメントアウトのトグル(2014-06-01)
 " \cでコメントアウトの切り替え
-NeoBundle 'tyru/caw.vim'
+call dein#add('tyru/caw.vim')
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
 " Required:
 filetype plugin indent on
 " 複数文字を一気に選択
-NeoBundle 'terryma/vim-multiple-cursors'
+call dein#add('terryma/vim-multiple-cursors')
 
 " タブ/インデントの設定
 set expandtab     " タブ入力を複数の空白入力に置き換える
@@ -98,20 +99,20 @@ set wildmenu wildmode=list:longest,full
 set history=100
 
 " HTMLタグの補完強化
-NeoBundle 'mattn/emmet-vim'
+call dein#add('mattn/emmet-vim')
 
 " https://github.com/Shougo/unite.vim
-NeoBundle 'Shougo/unite.vim'
+call dein#add('Shougo/unite.vim')
 
 " ファイルをtree表示してくれる
-NeoBundle 'scrooloose/nerdtree'
+call dein#add('scrooloose/nerdtree')
 " 隠しファイルをデフォルトで表示させる
 let NERDTreeShowHidden = 1
 " デフォルトでツリーを表示させる
 autocmd VimEnter * execute 'NERDTree'
 
 " https://github.com/Shougo/neocomplete.vim
-NeoBundle 'Shougo/neocomplete.vim'
+call dein#add('Shougo/neocomplete.vim')
 
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
@@ -143,20 +144,21 @@ inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " scala用syntax highlight
-NeoBundle 'derekwyatt/vim-scala'
+call dein#add('derekwyatt/vim-scala')
 " html5シンタックス
-NeoBundle 'taichouchou2/html5.vim'
+call dein#add('taichouchou2/html5.vim')
 " CSSシンタックス
-NeoBundle 'hail2u/vim-css3-syntax'
+call dein#add('hail2u/vim-css3-syntax')
 " javascriptシンタックス
-NeoBundle 'pangloss/vim-javascript'
+call dein#add('pangloss/vim-javascript')
 
 " Required:
-call neobundle#end()
+call dein#end()
 
 " Required:
 filetype plugin indent on
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
