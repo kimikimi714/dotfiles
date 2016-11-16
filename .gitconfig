@@ -15,12 +15,11 @@
   ro = rebase origin # branchでfoしてroすればmasterにrebaseできる
   rc = rebase --continue
   wd = diff --word-diff # 単語単位のdiff
-  gp = grep -n # grepに行番号をつける
+  gn = grep -n # grepに行番号をつける
   d  = diff --ignore-space-change
   b  = branch
+  cv = commit -v
 	ap = add -p
-	cv = commit -v
-	gn = grep -n
 [tig "bind"]
   generic = g move-first-line
   generic = G move-last-line
