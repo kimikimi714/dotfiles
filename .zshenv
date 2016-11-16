@@ -19,3 +19,13 @@ export PYTHONENV="$(brew --prefix)/lib/python2.7/site-packages"
 
 export VAULT_ADDR='http://127.0.0.1:8200'
 
+# goの設定
+export GOPATH=$DOCUMENTS/gogo
+export PATH=$PATH:$GOPATH/bin
+
+# nodebrewの設定
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# composerの設定
+export COMPOSER_PATH=$HOME/.composer
+export PATH=$PATH:$COMPOSER_PATH/vendor/bin
