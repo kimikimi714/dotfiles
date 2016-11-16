@@ -20,6 +20,7 @@
   b  = branch
 	ap = add -p
 	cv = commit -v
+	gn = grep -n
 [tig "bind"]
   generic = g move-first-line
   generic = G move-last-line
