@@ -23,3 +23,5 @@
 [tig "bind"]
   generic = g move-first-line
   generic = G move-last-line
+[ghq]
+	root = /Users/kimikimi714/Documents
