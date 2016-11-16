@@ -18,6 +18,8 @@
   gp = grep -n # grepに行番号をつける
   d  = diff --ignore-space-change
   b  = branch
+	ap = add -p
+	cv = commit -v
 [tig "bind"]
   generic = g move-first-line
   generic = G move-last-line
