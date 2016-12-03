@@ -7,6 +7,7 @@
 | :+1: | new features |
 | :shower: | delete |
 | :new: | add new files |
+| :bug: | bugfix |
 | :recycle: | refactoring |
 | :memo: | add comments |
 
