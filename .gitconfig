@@ -25,3 +25,5 @@
   generic = G move-last-line
 [ghq]
 	root = /Users/kimikimi714/Documents
+[commit]
+	template = emoji.md
