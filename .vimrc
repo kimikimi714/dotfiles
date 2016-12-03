@@ -151,6 +151,8 @@ call dein#add('taichouchou2/html5.vim')
 call dein#add('hail2u/vim-css3-syntax')
 " javascriptシンタックス
 call dein#add('pangloss/vim-javascript')
+" vueシンタックス
+call dein#add('posva/vim-vue')
 
 " Required:
 call dein#end()
