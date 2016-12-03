@@ -3,8 +3,10 @@
 
 | emoji        | mean           |
 | ------------- |:-------------|
-| :+1: | new feature |
+| :tada: | new big features |
+| :+1: | new features |
 | :shower: | delete |
+| :new: | add new files |
 | :recycle: | refactoring |
-| :memo: | add comment |
+| :memo: | add comments |
 
