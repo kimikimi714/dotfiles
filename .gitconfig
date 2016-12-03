@@ -26,4 +26,4 @@
 [ghq]
 	root = /Users/kimikimi714/Documents
 [commit]
-	template = emoji.md
+	template = /Users/kimikimi714/Documents/config/emoji.md
