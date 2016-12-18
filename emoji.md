@@ -7,4 +7,5 @@
 # 🐛   `:bug:` bugfix
 # ♻️    `:recycle:` refactoring
 # 📝   `:memo:` add comments
+# 🆙   `:up:` update some packages
 
