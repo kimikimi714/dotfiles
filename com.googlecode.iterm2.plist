@@ -307,6 +307,8 @@
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
+	<key>NSScrollViewShouldScrollUnderTitlebar</key>
+	<false/>
 	<key>NSTableView Columns KeyBingingTable</key>
 	<array>
 		<data>
@@ -325,11 +327,13 @@
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>708 355 445 77 0 0 1366 745 </string>
+	<string>708 221 445 77 0 0 1366 745 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>269 161 924 485 0 0 1366 745 </string>
+	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
+	<string>375 429 616 174 0 0 1366 745 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 29 1361 716 0 0 1366 745 </string>
+	<string>0 7 1361 738 0 0 1366 745 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>169 44 570 451 0 0 1366 745 </string>
 	<key>New Bookmarks</key>
@@ -1785,10 +1789,18 @@
 			<string>/Users/kimikimi714</string>
 		</dict>
 	</array>
+	<key>NoSyncInstallationId</key>
+	<string>F084D8D1-520F-48EA-85A2-35B4240D51DD</string>
+	<key>NoSyncNeverAskAboutSettingAlternateMouseScroll</key>
+	<true/>
+	<key>NoSyncPermissionToShowTip</key>
+	<false/>
+	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
+	<real>492688662.46533501</real>
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>455087497.90900999</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>487420494.017268</real>
+	<real>492688610.77949899</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -1797,6 +1809,8 @@
 	<false/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>0</integer>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
 	<key>PassOnControlClick</key>
 	<false/>
 	<key>PasteFromClipboard</key>
@@ -1836,6 +1850,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>/Users/kimikimi714/Documents/config</string>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -1848,12 +1864,14 @@
 	<true/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
+	<key>SUFeedAlternateAppNameKey</key>
+	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing.xml</string>
+	<string>https://iterm2.com/appcasts/testing.xml?shard=71</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-06-12T06:47:51Z</date>
+	<date>2016-12-17T12:42:09Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1895,6 +1913,6 @@
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>iTerm Version</key>
-	<string>2.1.4</string>
+	<string>3.0.8</string>
 </dict>
 </plist>
