@@ -14,6 +14,8 @@
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
 	<integer>1</integer>
+	<key>AppleWindowTabbingMode</key>
+	<string>manual</string>
 	<key>AutoHideTmuxClientSession</key>
 	<false/>
 	<key>CheckTestRelease</key>
@@ -281,6 +283,8 @@
 	<integer>0</integer>
 	<key>HotkeyCode</key>
 	<integer>0</integer>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>0</integer>
 	<key>IRMemory</key>
@@ -333,7 +337,7 @@
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>375 429 616 174 0 0 1366 745 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 7 1361 738 0 0 1366 745 </string>
+	<string>0 4 1366 741 0 0 1366 745 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>169 44 570 451 0 0 1366 745 </string>
 	<key>New Bookmarks</key>
@@ -1789,6 +1793,8 @@
 			<string>/Users/kimikimi714</string>
 		</dict>
 	</array>
+	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
+	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>F084D8D1-520F-48EA-85A2-35B4240D51DD</string>
 	<key>NoSyncNeverAskAboutSettingAlternateMouseScroll</key>
@@ -1871,7 +1877,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-12-17T12:42:09Z</date>
+	<date>2017-11-10T15:39:06Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1913,6 +1919,6 @@
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>iTerm Version</key>
-	<string>3.0.8</string>
+	<string>3.1.4.beta.1</string>
 </dict>
 </plist>
