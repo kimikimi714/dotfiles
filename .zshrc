@@ -27,3 +27,9 @@ function repo {
 
 # 実行時オプションとかショートカットaliasの設定
 alias ls='gls --color -F'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kimikimi714/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kimikimi714/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kimikimi714/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kimikimi714/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

@@ -29,3 +29,7 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 # composerの設定
 export COMPOSER_PATH=$HOME/.composer
 export PATH=$PATH:$COMPOSER_PATH/vendor/bin
+
+# direnv の設定
+eval "$(direnv hook zsh)"
+
