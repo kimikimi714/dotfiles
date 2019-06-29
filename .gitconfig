@@ -3,7 +3,7 @@
   email = kimikimi714@gmail.com
 [core]
   editor = vim
-  excludesfile = /Users/kimikimi714/Documents/git_repo/config/gitignoreGlobal
+	excludesfile = /Users/kimikimi714/Documents/config/gitignoreGlobal
 [color]
   ui = true
 [alias]
