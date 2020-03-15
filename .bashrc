@@ -6,3 +6,10 @@ source /etc/profile.d/bash_completion.sh
 source /usr/share/bash-completion/completions/git
 GIT_PS1_SHOWDIRTYSTATE=true
 export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
+
+function repo {
+  local dir="$( ghq list -p | peco )"
+  if [ ! -z "$dir" ] ; then
+    cd "$dir"
+  fi
+}
