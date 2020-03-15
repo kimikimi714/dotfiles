@@ -3,20 +3,28 @@
   email = kimikimi714@gmail.com
 [core]
   editor = vim
-	excludesfile = /home/kimikimi714/go/src/github.com/kimikimi714/config/gitignoreGlobal
+	excludesfile = /Users/kimikimi714/Documents/config/gitignoreGlobal
 [color]
   ui = true
 [alias]
 	co = checkout
 	st = status -sb # シンプルなstatus
 	lg = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+	pr = pull --rebase --prune # pull するときにmergeコミットを作らない
+	fo = fetch origin
+	ro = rebase origin # branchでfoしてroすればmasterにrebaseできる
+	rc = rebase --continue
+	wd = diff --word-diff # 単語単位のdiff
 	gn = grep -n # grepに行番号をつける
 	d  = diff --ignore-space-change
 	b  = branch
 	cv = commit -v
 	ap = add -p
 	pp = pull -p
+[tig "bind"]
+  generic = g move-first-line
+  generic = G move-last-line
 [ghq]
-	root = /home/kimikimi714/go/src
+	root = /Users/kimikimi714/Documents
 [commit]
-	template = /home/kimikimi714/go/src/github.com/kimikimi714/config/emoji.md
+	template = /Users/kimikimi714/Documents/config/emoji.md
