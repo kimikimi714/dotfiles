@@ -1,3 +1,6 @@
+# alias
+alias ls="ls --color=auto"
+
 # gitコマンドラインの見せ方設定
 source /etc/profile.d/bash_completion.sh
 source /usr/share/bash-completion/completions/git
