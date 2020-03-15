@@ -96,9 +96,6 @@ set wildmenu wildmode=list:longest,full
 " コマンドラインの履歴を100件保存する
 set history=100
 
-" https://github.com/Shougo/unite.vim
-Plugin 'Shougo/unite.vim'
-
 " ファイルをtree表示してくれる
 Plugin 'scrooloose/nerdtree'
 " 隠しファイルをデフォルトで表示させる
@@ -106,37 +103,29 @@ let NERDTreeShowHidden = 1
 " デフォルトでツリーを表示させる
 autocmd VimEnter * execute 'NERDTree'
 
-" https://github.com/Shougo/neocomplete.vim
-Plugin 'Shougo/neocomplete.vim'
+" https://github.com/Shougo/deoplete.nvim
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
 
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplete#enable_smart_case = 1
- " Use underbar completion.
-let g:neocomplete#enable_underbar_completion = 1
-" ユーザ定義の辞書を指定
-let g:neocomplete#sources#dictionary#dictionaries = {
-  \ 'default' : '',
-  \ 'scala' : $HOME . '/.vim/dict/scala.dict',
-  \ }
+call deoplete#custom#option('smart_case', v:true)
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
+inoremap <expr><C-g> deoplete#undo_completion()
+inoremap <expr><C-l> deoplete#complete_common_string()
 
-" Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
+" <C-h>, <BS>: close popup and delete backward char.
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
