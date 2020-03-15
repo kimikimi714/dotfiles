@@ -96,9 +96,6 @@ set wildmenu wildmode=list:longest,full
 " コマンドラインの履歴を100件保存する
 set history=100
 
-" HTMLタグの補完強化
-Plugin 'mattn/emmet-vim'
-
 " https://github.com/Shougo/unite.vim
 Plugin 'Shougo/unite.vim'
 
@@ -140,17 +137,6 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
-
-" scala用syntax highlight
-Plugin 'derekwyatt/vim-scala'
-" html5シンタックス
-Plugin 'taichouchou2/html5.vim'
-" CSSシンタックス
-Plugin 'hail2u/vim-css3-syntax'
-" javascriptシンタックス
-Plugin 'pangloss/vim-javascript'
-" vueシンタックス
-Plugin 'posva/vim-vue'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
