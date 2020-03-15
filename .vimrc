@@ -110,8 +110,6 @@ Plugin 'roxma/vim-hug-neovim-rpc'
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
-" Use smartcase.
-call deoplete#custom#option('smart_case', v:true)
 " Plugin key-mappings.
 inoremap <expr><C-g> deoplete#undo_completion()
 inoremap <expr><C-l> deoplete#complete_common_string()
@@ -130,4 +128,11 @@ inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" Use smartcase
+" I want to add this line next to deoplete#enable_at_startup,
+" but I had an error 'Unknown function: deoplete#custom#option'.
+" So, I call this at the end of file.
+" Then I don't have the same error.
+call deoplete#custom#option('smart_case', v:true)
 
