@@ -28,3 +28,5 @@ fi
 
 # linuxbrew setting
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+PATH="$HOME/go/bin":$PATH
