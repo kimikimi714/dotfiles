@@ -14,3 +14,6 @@ function repo {
     cd "$dir"
   fi
 }
+
+# for nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
