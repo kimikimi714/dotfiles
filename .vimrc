@@ -1,17 +1,7 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " 画面表示の設定
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 set guifont=Ricty\ for\ Powerline:h15
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
@@ -20,7 +10,7 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 syntax on             " シンタックスハイライト オン
-Plugin 'tomasr/molokai'
+Plug 'tomasr/molokai'
 colorscheme molokai
 set background=dark
 set number            " 行番号を表示する
@@ -41,9 +31,9 @@ set listchars=tab:▸=,trail:-,eol:↲,extends:❯,precedes:❮
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
 " 行末の半角スペースを可視化
-Plugin 'bronson/vim-trailing-whitespace'
+Plug 'bronson/vim-trailing-whitespace'
 " インデントに色を付けて見やすくする
-Plugin 'nathanaelkane/vim-indent-guides'
+Plug 'nathanaelkane/vim-indent-guides'
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
 let g:indent_guides_enable_on_vim_startup = 1
 
@@ -70,13 +60,13 @@ set wrapscan   " 最後尾まで検索を終えたら次の検索で先頭に移
 set gdefault   " 置換の時 g オプションをデフォルトで有効にする
 " コメントアウトのトグル(2014-06-01)
 " \cでコメントアウトの切り替え
-Plugin 'tyru/caw.vim'
+Plug 'tyru/caw.vim'
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
 " Required:
 filetype plugin indent on
 " 複数文字を一気に選択
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 
 " タブ/インデントの設定
 set expandtab     " タブ入力を複数の空白入力に置き換える
@@ -97,16 +87,16 @@ set wildmenu wildmode=list:longest,full
 set history=100
 
 " ファイルをtree表示してくれる
-Plugin 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 " 隠しファイルをデフォルトで表示させる
 let NERDTreeShowHidden = 1
-" デフォルトでツリーを表示させる
-autocmd VimEnter * execute 'NERDTree'
+" Start NERDTree and put the cursor back in the other window.
+autocmd VimEnter * NERDTree | wincmd p
 
 " https://github.com/Shougo/deoplete.nvim
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'roxma/nvim-yarp'
-Plugin 'roxma/vim-hug-neovim-rpc'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
@@ -125,8 +115,8 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+" Initialize plugin system
+call plug#end()
 filetype plugin indent on    " required
 
 " Use smartcase
