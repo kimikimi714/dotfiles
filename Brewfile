@@ -1,5 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
+brew "gcc"
 brew "ghq"
-brew "go"
+brew "nodebrew"
 brew "peco"
