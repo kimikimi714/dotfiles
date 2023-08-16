@@ -93,36 +93,65 @@ let NERDTreeShowHidden = 1
 " Start NERDTree and put the cursor back in the other window.
 autocmd VimEnter * NERDTree | wincmd p
 
-" https://github.com/Shougo/deoplete.nvim
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'Shougo/ddc.vim'
+Plug 'vim-denops/denops.vim'
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-" Plugin key-mappings.
-inoremap <expr><C-g> deoplete#undo_completion()
-inoremap <expr><C-l> deoplete#complete_common_string()
+" ポップアップウィンドウを表示するプラグイン
+Plug 'Shougo/ddc-ui-native'
+" カーソル周辺の既出単語を補完するsource
+Plug 'Shougo/ddc-around'
+" ファイル名を補完するsource
+Plug 'LumaKernel/ddc-file'
+" 入力中の単語を補完の対象にするfilter
+Plug 'Shougo/ddc-matcher_head'
+" 補完候補を適切にソートするfilter
+Plug 'Shougo/ddc-sorter_rank'
+" 補完候補の重複を防ぐためのfilter
+Plug 'Shougo/ddc-converter_remove_overlap'
 
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-  return deoplete#close_popup() . "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backward char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'shun/ddc-source-vim-lsp'
 
 " Initialize plugin system
 call plug#end()
-filetype plugin indent on    " required
 
-" Use smartcase
-" I want to add this line next to deoplete#enable_at_startup,
-" but I had an error 'Unknown function: deoplete#custom#option'.
-" So, I call this at the end of file.
-" Then I don't have the same error.
-call deoplete#custom#option('smart_case', v:true)
+call plug#('Shougo/ddc.vim')
+call plug#('vim-denops/denops.vim')
+call plug#('Shougo/ddc-ui-native')
+call plug#('Shougo/ddc-around')
+call plug#('LumaKernel/ddc-file')
+call plug#('Shougo/ddc-matcher_head')
+call plug#('Shougo/ddc-sorter_rank')
+call plug#('Shougo/ddc-converter_remove_overlap')
+call plug#('prabirshrestha/vim-lsp')
+call plug#('mattn/vim-lsp-settings')
+call plug#('shun/ddc-source-vim-lsp')
+
+call ddc#custom#patch_global('ui', 'native')
+call ddc#custom#patch_global('sources', [
+ \ 'around',
+ \ 'vim-lsp',
+ \ 'file'
+ \ ])
+call ddc#custom#patch_global('sourceOptions', {
+ \ '_': {
+ \   'matchers': ['matcher_head'],
+ \   'sorters': ['sorter_rank'],
+ \   'converters': ['converter_remove_overlap'],
+ \ },
+ \ 'around': {'mark': 'Around'},
+ \ 'vim-lsp': {
+ \   'mark': 'LSP',
+ \   'matchers': ['matcher_head'],
+ \   'forceCompletionPattern': '\.|:|->|"\w+/*'
+ \ },
+ \ 'file': {
+ \   'mark': 'file',
+ \   'isVolatile': v:true,
+ \   'forceCompletionPattern': '\S/\S*'
+ \ }})
+call ddc#enable()
+
+filetype plugin indent on    " required
 

@@ -1,5 +1,7 @@
 tap "homebrew/bundle"
+brew "deno"
 brew "gcc"
 brew "ghq"
 brew "nodebrew"
 brew "peco"
+brew "vim"
