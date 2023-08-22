@@ -1,9 +1,14 @@
 call plug#begin('~/.vim/plugged')
 
 " 画面表示の設定
-Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-set guifont=Ricty\ for\ Powerline:h15
-let g:Powerline_symbols = 'fancy'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='violet'
+let g:airline_powerline_fonts = 1
+let g:airline_solarized_bg='dark'
+set guifont=Inconsolata\ for\ Powerline:h15
+
 set encoding=utf-8
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
