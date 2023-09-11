@@ -30,3 +30,7 @@ fi
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 PATH="$HOME/go/bin":$PATH
+
+# Volta https://volta.sh/
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
