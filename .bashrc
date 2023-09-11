@@ -15,9 +15,7 @@ function repo {
   fi
 }
 
-# for nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
 # Volta https://volta.sh/
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
