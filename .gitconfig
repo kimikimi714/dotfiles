@@ -2,12 +2,13 @@
   name = kimikimi714
   email = kimikimi714@gmail.com
 [core]
-  editor = vim
+	editor = vim
 	excludesfile = /Users/kimikimi714/Documents/config/gitignoreGlobal
+	pager = more -F -X
 [color]
-  ui = true
+	ui = true
 [alias]
-	co = checkout
+	co = switch
 	st = status -sb # シンプルなstatus
 	lg = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 	pr = pull --rebase --prune # pull するときにmergeコミットを作らない
@@ -20,11 +21,16 @@
 	b  = branch
 	cv = commit -v
 	ap = add -p
+	gl = grep -l
 	pp = pull -p
-[tig "bind"]
-  generic = g move-first-line
-  generic = G move-last-line
 [ghq]
 	root = /Users/kimikimi714/Documents
 [commit]
 	template = /Users/kimikimi714/Documents/config/emoji.md
+[pager]
+	log = diff-highlight | nkf -w | more -F -X
+	show = diff-highlight | nkf -w | more -F -X
+	diff = diff-highlight | nkf -w | more -F -X
+
+[interactive]
+	diffFilter = diff-highlight | nkf -w
