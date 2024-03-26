@@ -1,26 +1,22 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " 画面表示の設定
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-set guifont=Ricty\ for\ Powerline:h15
-let g:Powerline_symbols = 'fancy'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='violet'
+let g:airline_powerline_fonts = 1
+let g:airline_solarized_bg='dark'
+set guifont=Inconsolata\ for\ Powerline:h15
+
 set encoding=utf-8
+set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp,latin1
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 syntax on             " シンタックスハイライト オン
-Plugin 'tomasr/molokai'
+Plug 'tomasr/molokai'
 colorscheme molokai
 set background=dark
 set number            " 行番号を表示する
@@ -41,9 +37,9 @@ set listchars=tab:▸=,trail:-,eol:↲,extends:❯,precedes:❮
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
 " 行末の半角スペースを可視化
-Plugin 'bronson/vim-trailing-whitespace'
+Plug 'bronson/vim-trailing-whitespace'
 " インデントに色を付けて見やすくする
-Plugin 'nathanaelkane/vim-indent-guides'
+Plug 'preservim/vim-indent-guides'
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
 let g:indent_guides_enable_on_vim_startup = 1
 
@@ -70,13 +66,13 @@ set wrapscan   " 最後尾まで検索を終えたら次の検索で先頭に移
 set gdefault   " 置換の時 g オプションをデフォルトで有効にする
 " コメントアウトのトグル(2014-06-01)
 " \cでコメントアウトの切り替え
-Plugin 'tyru/caw.vim'
-nmap <Leader>c <Plug>(caw:i:toggle)
-vmap <Leader>c <Plug>(caw:i:toggle)
+Plug 'tyru/caw.vim'
+nmap <Leader>c <Plug>(caw:hatpos:toggle)
+vmap <Leader>c <Plug>(caw:hatpos:toggle)
 " Required:
 filetype plugin indent on
 " 複数文字を一気に選択
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 
 " タブ/インデントの設定
 set expandtab     " タブ入力を複数の空白入力に置き換える
@@ -97,42 +93,72 @@ set wildmenu wildmode=list:longest,full
 set history=100
 
 " ファイルをtree表示してくれる
-Plugin 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 " 隠しファイルをデフォルトで表示させる
 let NERDTreeShowHidden = 1
-" デフォルトでツリーを表示させる
-autocmd VimEnter * execute 'NERDTree'
+" Start NERDTree and put the cursor back in the other window.
+autocmd VimEnter * NERDTree | wincmd p
 
-" https://github.com/Shougo/deoplete.nvim
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'roxma/nvim-yarp'
-Plugin 'roxma/vim-hug-neovim-rpc'
+Plug 'Shougo/ddc.vim'
+Plug 'vim-denops/denops.vim'
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-" Plugin key-mappings.
-inoremap <expr><C-g> deoplete#undo_completion()
-inoremap <expr><C-l> deoplete#complete_common_string()
+" ポップアップウィンドウを表示するプラグイン
+Plug 'Shougo/ddc-ui-native'
+" カーソル周辺の既出単語を補完するsource
+Plug 'Shougo/ddc-around'
+" ファイル名を補完するsource
+Plug 'LumaKernel/ddc-file'
+" 入力中の単語を補完の対象にするfilter
+Plug 'Shougo/ddc-matcher_head'
+" 補完候補を適切にソートするfilter
+Plug 'Shougo/ddc-sorter_rank'
+" 補完候補の重複を防ぐためのfilter
+Plug 'Shougo/ddc-converter_remove_overlap'
 
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-  return deoplete#close_popup() . "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backward char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'shun/ddc-source-vim-lsp'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+" Initialize plugin system
+call plug#end()
+
+call plug#('Shougo/ddc.vim')
+call plug#('vim-denops/denops.vim')
+call plug#('Shougo/ddc-ui-native')
+call plug#('Shougo/ddc-around')
+call plug#('LumaKernel/ddc-file')
+call plug#('Shougo/ddc-matcher_head')
+call plug#('Shougo/ddc-sorter_rank')
+call plug#('Shougo/ddc-converter_remove_overlap')
+call plug#('prabirshrestha/vim-lsp')
+call plug#('mattn/vim-lsp-settings')
+call plug#('shun/ddc-source-vim-lsp')
+
+call ddc#custom#patch_global('ui', 'native')
+call ddc#custom#patch_global('sources', [
+ \ 'around',
+ \ 'vim-lsp',
+ \ 'file'
+ \ ])
+call ddc#custom#patch_global('sourceOptions', {
+ \ '_': {
+ \   'matchers': ['matcher_head'],
+ \   'sorters': ['sorter_rank'],
+ \   'converters': ['converter_remove_overlap'],
+ \ },
+ \ 'around': {'mark': 'Around'},
+ \ 'vim-lsp': {
+ \   'mark': 'LSP',
+ \   'matchers': ['matcher_head'],
+ \   'forceCompletionPattern': '\.|:|->|"\w+/*'
+ \ },
+ \ 'file': {
+ \   'mark': 'file',
+ \   'isVolatile': v:true,
+ \   'forceCompletionPattern': '\S/\S*'
+ \ }})
+call ddc#enable()
+
 filetype plugin indent on    " required
-
-" Use smartcase
-" I want to add this line next to deoplete#enable_at_startup,
-" but I had an error 'Unknown function: deoplete#custom#option'.
-" So, I call this at the end of file.
-" Then I don't have the same error.
-call deoplete#custom#option('smart_case', v:true)
-
+" use fzf in vim
+set rtp+=/usr/local/opt/fzf
