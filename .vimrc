@@ -15,8 +15,8 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 syntax on             " シンタックスハイライト オン
-Plug 'tomasr/molokai'
-colorscheme molokai
+" VSCode の Dark+ 風カラースキーム
+Plug 'tomasiser/vim-code-dark'
 set background=dark
 set number            " 行番号を表示する
 set cursorline        " カーソル行の背景色を変える
