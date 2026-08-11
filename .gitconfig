@@ -21,6 +21,7 @@
 	root = /home/kimikimi714/src
 [commit]
 	template = /home/kimikimi714/src/github.com/kimikimi714/dotfiles/emoji.md
+	gpgsign = true
 [credential "https://github.com"]
 	helper = 
 	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
