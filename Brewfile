@@ -1,5 +1,3 @@
-tap "homebrew/bundle"
-brew "python@3.12"
 brew "deno"
 brew "gcc"
 brew "ghq"
