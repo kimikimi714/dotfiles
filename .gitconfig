@@ -3,7 +3,7 @@
   email = kimikimi714@gmail.com
 [core]
   editor = vim
-	excludesfile = /home/kimikimi714/go/src/github.com/kimikimi714/config/gitignoreGlobal
+	excludesfile = /home/kimikimi714/src/github.com/kimikimi714/dotfiles/gitignoreGlobal
 [color]
   ui = true
 [alias]
@@ -17,6 +17,6 @@
 	ap = add -p
 	pp = pull -p
 [ghq]
-	root = /home/kimikimi714/go/src
+	root = /home/kimikimi714/src
 [commit]
-	template = /home/kimikimi714/go/src/github.com/kimikimi714/config/emoji.md
+	template = /home/kimikimi714/src/github.com/kimikimi714/dotfiles/emoji.md
