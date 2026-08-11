@@ -9,10 +9,15 @@ GIT_PS1_SHOWDIRTYSTATE=true
 export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
 
 function repo {
-  local dir="$( ghq list -p | peco )"
+  local dir="$( ghq list -p | fzf )"
   if [ ! -z "$dir" ] ; then
     cd "$dir"
   fi
+}
+
+function hist-grep {
+  local cmd="$( history 1 | fzf )"
+  echo "$cmd"
 }
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
