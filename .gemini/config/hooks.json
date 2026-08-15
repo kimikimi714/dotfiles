@@ -1,0 +1,15 @@
+{
+  "git-checkout-rewriter": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ./scripts/git-checkout-rewrite.py"
+          }
+        ]
+      }
+    ]
+  }
+}
