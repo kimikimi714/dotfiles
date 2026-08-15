@@ -5,7 +5,6 @@
 # 🚿   `:shower:` delete
 # 🆕   `:new:` add new files
 # 🐛   `:bug:` bugfix
-# ♻️    `:recycle:` refactoring
+# ♻️   `:recycle:` refactoring
 # 📝   `:memo:` add comments
 # 🆙   `:up:` update some packages
-
