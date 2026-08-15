@@ -8,3 +8,12 @@
 # ♻️   `:recycle:` refactoring
 # 📝   `:memo:` add comments
 # 🆙   `:up:` update some packages
+#
+# Format:
+# <emoji> <Summary>
+#
+# [Why / Context]
+# <Why this change was needed>
+#
+# [Details]
+# - <Details of changes>

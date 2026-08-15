@@ -1,0 +1,122 @@
+#!/usr/bin/env python3
+"""
+Global Git commit-msg hook:
+Enforces structured, context-rich commit messages for both humans and AI agents.
+
+Format Requirement:
+<emoji_code|emoji> <Summary (What)>
+
+[Why / Context]
+Explanation of why this change is made, background, or motivation.
+
+[Details] (Optional)
+Bullet points of specific changes.
+"""
+
+import re
+import sys
+
+ALLOWED_EMOJIS = [
+    ":tada:",
+    ":+1:",
+    ":shower:",
+    ":new:",
+    ":bug:",
+    ":recycle:",
+    ":memo:",
+    ":up:",
+    "🎉",
+    "👍",
+    "🚿",
+    "🆕",
+    "🐛",
+    "♻️",
+    "📝",
+    "🆙",
+]
+
+
+def validate_commit_message(msg: str) -> tuple[bool, str]:
+    # Strip comments and trailing whitespace
+    lines = [line for line in msg.splitlines() if not line.strip().startswith("#")]
+    while lines and not lines[-1].strip():
+        lines.pop()
+
+    if not lines:
+        return False, "Commit message is empty."
+
+    first_line = lines[0].strip()
+
+    # 1. Allow automated Git messages (merge, revert, tag, fixup, squash, etc.)
+    if (
+        first_line.startswith("Merge ")
+        or first_line.startswith("Revert ")
+        or first_line.startswith("fixup! ")
+        or first_line.startswith("squash! ")
+    ):
+        return True, ""
+
+    # 2. Validate header emoji
+    has_valid_emoji = any(first_line.startswith(emoji) for emoji in ALLOWED_EMOJIS)
+    if not has_valid_emoji:
+        allowed_list = ", ".join(ALLOWED_EMOJIS[:8])
+        return False, (
+            f"Invalid commit header. The first line must start with one of the allowed emojis:\n"
+            f"  Allowed emojis: {allowed_list} ...\n"
+            f"  Example: :+1: Update commit message guidelines\n"
+            f"  Your first line: '{first_line}'"
+        )
+
+    # 3. Check for summary text after emoji
+    header_without_emoji = first_line
+    for emoji in ALLOWED_EMOJIS:
+        if header_without_emoji.startswith(emoji):
+            header_without_emoji = header_without_emoji[len(emoji) :].strip()
+            break
+
+    if not header_without_emoji:
+        return False, "Commit header is missing a summary after the emoji."
+
+    # 4. Require contextual body for non-trivial commits (at least 2 non-empty lines)
+    if len(lines) == 1:
+        return False, (
+            "Commit message is too brief (1-line commit).\n"
+            "To preserve context for AI agents and collaborators, please include a blank line and a 'Why/Context' explanation in the commit body.\n"
+            "Example format:\n"
+            "  :+1: Summary of change\n"
+            "  \n"
+            "  [Why / Context]\n"
+            "  Explain why this change was needed...\n"
+        )
+
+    # 5. Check that line 2 is blank (Git standard convention)
+    if len(lines) >= 2 and lines[1].strip() != "":
+        return False, "The second line of the commit message must be blank."
+
+    return True, ""
+
+
+def main():
+    if len(sys.argv) < 2:
+        sys.exit(0)
+
+    commit_msg_file = sys.argv[1]
+    try:
+        with open(commit_msg_file, "r", encoding="utf-8") as f:
+            content = f.read()
+    except Exception as e:
+        print(f"commit-msg hook error reading message: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    is_valid, error_msg = validate_commit_message(content)
+    if not is_valid:
+        print(f"\n❌ [COMMIT-MSG HOOK REJECTED]", file=sys.stderr)
+        print(error_msg, file=sys.stderr)
+        print("-" * 60, file=sys.stderr)
+        sys.exit(1)
+
+    sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()

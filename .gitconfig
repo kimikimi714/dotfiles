@@ -5,6 +5,7 @@
 [core]
 	editor = vim
 	excludesfile = /home/kimikimi714/src/github.com/kimikimi714/dotfiles/gitignoreGlobal
+	hooksPath = ~/.config/git/hooks
 [color]
 	ui = true
 [alias]

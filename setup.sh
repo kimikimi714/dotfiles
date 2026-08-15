@@ -40,6 +40,7 @@ FILES_TO_LINK=(
     ".vimrc:$HOME/.vimrc"
     "gitignoreGlobal:$HOME/.gitignore_global"
     ".gemini/config:$HOME/.gemini/config"
+    "git/hooks:$HOME/.config/git/hooks"
 )
 
 # 1. Create Symlinks with backup
