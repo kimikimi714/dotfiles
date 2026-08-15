@@ -1,5 +1,54 @@
 {
   "userSettings": {
-    "remoteControlHostname": "g1-fiery-aurora"
+    "remoteControlHostname": "g1-fiery-aurora",
+    "allowedCommands": [
+      "git diff",
+      "git log",
+      "git status",
+      "git switch"
+    ],
+    "deniedCommands": [
+      "git rm",
+      "git clean",
+      "sudo"
+    ],
+    "cascadeAllowedCommands": [
+      "cat",
+      "find",
+      "head",
+      "ls",
+      "tail",
+      "view",
+      "git diff",
+      "git log",
+      "git status",
+      "git switch"
+    ],
+    "cascadeDeniedCommands": [
+      "rm",
+      "git rm",
+      "git clean",
+      "sudo"
+    ]
+  },
+  "globalPermissionGrants": {
+    "allow": [
+      "run_command:cat *",
+      "run_command:find *",
+      "run_command:head *",
+      "run_command:ls *",
+      "run_command:tail *",
+      "run_command:view *",
+      "run_command:git diff *",
+      "run_command:git log *",
+      "run_command:git status *",
+      "run_command:git switch *"
+    ],
+    "deny": [
+      "run_command:rm *",
+      "run_command:git rm *",
+      "run_command:git clean *",
+      "run_command:sudo *"
+    ]
   }
 }
