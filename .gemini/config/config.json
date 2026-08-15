@@ -27,9 +27,16 @@
       "gh release list"
     ],
     "deniedCommands": [
+      "rm",
       "git rm",
       "git clean",
-      "sudo"
+      "sudo",
+      "unlink",
+      "trash",
+      "trash-put",
+      "shred",
+      "find -delete",
+      "find --delete"
     ],
     "cascadeAllowedCommands": [
       "cat",
@@ -66,7 +73,13 @@
       "rm",
       "git rm",
       "git clean",
-      "sudo"
+      "sudo",
+      "unlink",
+      "trash",
+      "trash-put",
+      "shred",
+      "find -delete",
+      "find --delete"
     ]
   },
   "globalPermissionGrants": {
@@ -105,7 +118,16 @@
       "run_command:rm *",
       "run_command:git rm *",
       "run_command:git clean *",
-      "run_command:sudo *"
+      "run_command:sudo *",
+      "run_command:unlink *",
+      "run_command:trash *",
+      "run_command:trash-put *",
+      "run_command:shred *",
+      "run_command:find * -delete*",
+      "run_command:find * --delete*",
+      "run_command:find * -exec rm *",
+      "run_command:find * -exec unlink *",
+      "run_command:xargs rm *"
     ]
   }
 }
