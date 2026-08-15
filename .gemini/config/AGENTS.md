@@ -20,7 +20,7 @@ To ensure that AI agents and collaborators can maintain and reconstruct context 
 
 ### 1. Structure
 ```text
-<emoji_code> <Summary (What)>
+[<emoji_code>] <Summary (What)>
 
 [Why / Context]
 Detailed explanation of why this change was needed, background, and motivation.
@@ -30,16 +30,7 @@ Detailed explanation of why this change was needed, background, and motivation.
 - Impact on other components or workflows
 ```
 
-### 2. Header Emojis (`emoji.md`)
-- 🎉 `:tada:` New features
-- 👍 `:+1:` Update or improve
-- 🚿 `:shower:` Delete
-- 🆕 `:new:` Add new files
-- 🐛 `:bug:` Bugfix
-- ♻️ `:recycle:` Refactoring
-- 📝 `:memo:` Add comments / docs
-- 🆙 `:up:` Update packages / dependencies
-
-### 3. Body Requirements
-- Never create 1-line commits for non-trivial changes.
-- Always explain **Why** the change was made, not just **What** was changed.
+### 2. Core Requirements
+- **Never create 1-line commits**: A 1-line commit loses critical context for future AI agents and team members.
+- **Always explain Why**: Prioritize explaining the background, motivation, and reasons behind the decision, not just the raw code diff (What).
+- **Header Emojis (Optional / Recommended)**: Emojis defined in `emoji.md` can optionally be used as prefixes (e.g., `:+1:`, `:new:`, `:bug:`), but providing rich context in the body is the primary requirement.

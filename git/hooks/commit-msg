@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # -----------------------------------------------------------------------------
 # Global Git commit-msg hook
-# Enforces structured, context-rich commit messages for AI agents and humans.
+# Enforces context-rich commit messages so AI agents and collaborators can
+# understand the background and reasoning behind changes.
 # -----------------------------------------------------------------------------
 
 set -eo pipefail
@@ -16,13 +17,7 @@ fi
 
 # 2. Execute validation using python3
 python3 - "$1" << 'EOF'
-import re
 import sys
-
-ALLOWED_EMOJIS = [
-    ":tada:", ":+1:", ":shower:", ":new:", ":bug:", ":recycle:", ":memo:", ":up:",
-    "🎉", "👍", "🚿", "🆕", "🐛", "♻️", "📝", "🆙"
-]
 
 def validate(commit_file):
     try:
@@ -44,47 +39,35 @@ def validate(commit_file):
 
     first_line = lines[0].strip()
 
-    # Skip automated git operations (merge, revert, fixup, squash)
+    # Skip automated git operations (merge, revert, fixup, squash, initial commit)
     if any(first_line.startswith(p) for p in ("Merge ", "Revert ", "fixup! ", "squash! ")):
         sys.exit(0)
 
-    # Validate header emoji
-    has_valid_emoji = any(first_line.startswith(e) for e in ALLOWED_EMOJIS)
-    if not has_valid_emoji:
-        allowed = ", ".join(ALLOWED_EMOJIS[:8])
-        print(f"\n\033[0;31m❌ [COMMIT-MSG HOOK REJECTED]\033[0m Invalid commit header.", file=sys.stderr)
-        print(f"The first line must start with one of the allowed emojis:\n  {allowed} ...", file=sys.stderr)
-        print(f"Your header: '{first_line}'", file=sys.stderr)
-        print("\n(Tip: In emergency situations, you can bypass hooks using 'git commit --no-verify')", file=sys.stderr)
-        print("-" * 60, file=sys.stderr)
+    # 1. Validate summary presence
+    if not first_line:
+        print("\n\033[0;31m❌ [COMMIT-MSG HOOK REJECTED]\033[0m Commit header (first line) is missing.", file=sys.stderr)
         sys.exit(1)
 
-    # Check for summary text
-    header_without_emoji = first_line
-    for emoji in ALLOWED_EMOJIS:
-        if header_without_emoji.startswith(emoji):
-            header_without_emoji = header_without_emoji[len(emoji):].strip()
-            break
-
-    if not header_without_emoji:
-        print("\n\033[0;31m❌ [COMMIT-MSG HOOK REJECTED]\033[0m Missing summary text after emoji.", file=sys.stderr)
-        print("Example: :+1: Add documentation for new features", file=sys.stderr)
-        sys.exit(1)
-
-    # Require contextual body for non-trivial commits (at least 2 non-empty lines)
+    # 2. Require contextual body for non-trivial commits (prevent 1-line commits)
     if len(lines) == 1:
-        print("\n\033[0;31m❌ [COMMIT-MSG HOOK REJECTED]\033[0m Commit message is too brief (1-line commit).", file=sys.stderr)
-        print("To preserve context for AI agents and collaborators, please include Why/Context in the body:\n", file=sys.stderr)
-        print("  <emoji> <Summary (What)>\n", file=sys.stderr)
+        print("\n\033[0;31m❌ [COMMIT-MSG HOOK REJECTED]\033[0m 1-line commit message detected.", file=sys.stderr)
+        print("To ensure AI agents and collaborators can reconstruct context from git history,")
+        print("please include a blank line and a 'Why / Context' explanation in the body.\n", file=sys.stderr)
+        print("Recommended format:", file=sys.stderr)
+        print("  <Summary of change>", file=sys.stderr)
+        print("  ", file=sys.stderr)
         print("  [Why / Context]", file=sys.stderr)
-        print("  Explain why this change was needed...\n", file=sys.stderr)
+        print("  Detailed explanation of why this change was needed...\n", file=sys.stderr)
+        print("  [Details] (Optional)", file=sys.stderr)
+        print("  - Specific change details...\n", file=sys.stderr)
         print("(Tip: In emergency situations, you can bypass hooks using 'git commit --no-verify')", file=sys.stderr)
         print("-" * 60, file=sys.stderr)
         sys.exit(1)
 
-    # Check that line 2 is blank (Git convention)
+    # 3. Check that line 2 is blank (Git convention)
     if len(lines) >= 2 and lines[1].strip() != "":
         print("\n\033[0;31m❌ [COMMIT-MSG HOOK REJECTED]\033[0m The second line must be blank.", file=sys.stderr)
+        print("Please separate the summary and the body with an empty line.", file=sys.stderr)
         sys.exit(1)
 
     sys.exit(0)
