@@ -1,12 +1,12 @@
 {
-  "git-checkout-rewriter": {
+  "safety-and-rewrite-guard": {
     "PreToolUse": [
       {
         "matcher": "run_command",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ./scripts/git-checkout-rewrite.py"
+            "command": "python3 ./scripts/pre-tool-guard.py"
           }
         ]
       }
