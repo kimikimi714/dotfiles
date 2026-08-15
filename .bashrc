@@ -68,6 +68,11 @@ GIT_PS1_SHOWDIRTYSTATE=true
 export PS1='${debian_chroot:+($debian_chroot)}\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
 
 # 8. Interactive Tools & Functions
+# mise (runtime version manager)
+if command -v mise >/dev/null 2>&1; then
+    eval "$(mise activate bash)"
+fi
+
 # fzf key bindings / completion (if fzf supports shell integration)
 if command -v fzf >/dev/null 2>&1; then
     eval "$(fzf --bash 2>/dev/null)" || true
