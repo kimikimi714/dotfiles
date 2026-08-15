@@ -8,6 +8,8 @@ brew "gcc"
 brew "gh"
 # Remote repository management made easy
 brew "ghq"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
 # Vi 'workalike' with many additional features
